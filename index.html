@@ -44,7 +44,7 @@
         background-color:#fff;
         margin: 1em 0;
       }
-    </style>  
+    </style>
   </head>
   <body>
     <!-- Form -->
@@ -66,7 +66,7 @@
         <input id="getLottobyID" type="number" value="2" style="display: inline-block">
         <button id="button" style="display: inline-block" onclick="javascript:getLottobyID()">getLottobyID</button>
         <br/>
-        
+
         <label><strong>Status</strong></label>
         <h4 id="status"></h4>
     </div>
@@ -102,7 +102,7 @@
         }
        // addStatusLine("");
         addStatusLine("calling getLottobyID("+id+")");
-        
+
         addStatusLine("Value:" + result[0]+","+result[1]+","+result[2]);
       });
     }
@@ -134,7 +134,7 @@
       })
     }
 
-   
+
 
     // Initializing
     if (typeof web3 !== 'undefined') {
@@ -144,12 +144,93 @@
     // Get default address
     web3.eth.defaultAccount = web3.eth.accounts[0];
 
-    // TODO: Replace your SimpleContract contract address here
-    var contractAddress = lotto.networks[5777].address;
 
 
     // TODO: Replace your SimpleContract abi here
-    var abi = lotto.abi;
+    var abi = [
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "maxLotto",
+				"type": "uint256"
+			}
+		],
+		"name": "generateLottos",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "newBalance",
+				"type": "uint256"
+			}
+		],
+		"name": "setBalance",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "i",
+				"type": "uint256"
+			}
+		],
+		"name": "getLottobyID",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
+// TODO: Replace your SimpleContract contract address here
+  var contractAddress = "0x78c1cdbee9805e1814c1d7d4986529340a6f9064";
 
     // Create an interface to SimpleContract on TomoChain
     var SimpleContractContract = web3.eth.contract(abi);
